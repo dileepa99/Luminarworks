@@ -113,7 +113,7 @@ class AgentPage {
 
      //===================================================================
 
-     SearchAgent(AgentBusinessUnit,PhnNumber)
+     SearchAgent(AgentBusinessUnit,PhnNumber,Vehicle,Ext)
   
      {
        //Check Agent's name
@@ -158,7 +158,7 @@ class AgentPage {
        .should('be.visible')
        .within(() => {
     cy.contains('Trait').should('exist');          // verify the label
-    cy.contains('compact_van').should('exist'); // verify the value
+    cy.contains(Vehicle).should('exist'); // verify the value
   });
 
    //Check the contact number of the Agent
@@ -179,7 +179,7 @@ class AgentPage {
     // Verify the label
     cy.contains('External').should('exist');    
     // Verify the value next to it
-    cy.contains('False').should('exist');
+    cy.contains(Ext).should('exist');
    });
 
 }
@@ -237,7 +237,36 @@ cy.get('tbody')
   .contains('td', 'Dec 25, 27')
   .should('exist');
 
+   }
 
+   //==================================================================
+
+   EditAgent(EditNumber)
+   {
+
+    //Select the agent to edit
+     cy.get('.flex-shrink-0 [data-slot="checkbox"]')
+       .should('be.visible')
+       .click();
+     cy.wait(1000)
+
+     //Click edit icon
+      cy.get('div.flex.justify-end')
+        .find('button[data-slot="button"]')
+        .should('be.visible')
+        .click();
+ 
+        //Edit phone number
+       cy.get('input[name="phoneNumber"]') 
+         .clear()                         // clear any existing value
+         .type(EditNumber);   
+
+         //Edit Trait
+       cy.contains('span', 'Select traits').click();
+       cy.get('input[placeholder="Search options..."]') 
+         .clear()
+         .type("Compact Van")
+         .type('{enter}'); // hit Enter to select
 
    }
   

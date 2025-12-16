@@ -110,6 +110,7 @@ class AssetPage {
 
       //Select the expiry date
       cy.get('input[placeholder="mm/dd/yyyy"]')
+        .focus()
         .type('2027-12-20')
         .blur()
   
@@ -149,7 +150,7 @@ class AssetPage {
 
      //=========================================================
 
-     SearchAssets(BusinessUnit)
+     SearchAssets(BusinessUnit,Vehicle)
      {
 
      // const assetToSearch = this.assetName;
@@ -227,14 +228,14 @@ class AssetPage {
   .should('be.visible')
   .within(() => {
     cy.contains('Trait').should('exist');          // verify the label
-    cy.contains('delivery_truck').should('exist'); // verify the value
+    cy.contains(Vehicle).should('exist'); // verify the value
   });
 
 
      }
   //=================================================================
 
-  SearchAssetInListView()
+  SearchAssetInListView(ExpDate,myTruck)
   {
 
  cy.get('a[href="/data/assets/list-view"]').click();
@@ -260,7 +261,7 @@ class AssetPage {
    cy.contains('span','Active')
 
   //Check the Trait
-  cy.contains('span' ,'delivery_truck')
+  cy.contains('span' , myTruck)
        
    //Check the Business unit
  cy.get('tbody')
@@ -274,12 +275,54 @@ class AssetPage {
 
   //Check the expiry date of the asset
  cy.get('tbody')
-  .contains('td', 'Dec 20, 27')
+  .contains('td', ExpDate)
   .should('exist');
 
 
-
      }
+
+
+     EditAsset(MyVehicle,ExDte)
+   {
+
+    //Select the agent to edit
+     cy.get('.flex-shrink-0 [data-slot="checkbox"]')
+       .should('be.visible')
+       .click();
+     cy.wait(1000)
+
+     //Click edit icon
+     cy.get('[aria-label="Edit"]').click();
+
+     //Edit Expiry date
+        cy.get('input[placeholder="mm/dd/yyyy"]')
+        .type(ExDte)
+        .blur()
+    
+         //Edit Trait
+       cy.contains('span', 'Delivery Truck')
+         .scrollIntoView()
+         .should('be.visible')  // optional, ensures Cypress waits for it
+         .click();
+       cy.wait(1000)
+       cy.get('[data-value="Clear"]').click({ force: true });
+       cy.get('input[placeholder="Search options..."]') 
+         .type(MyVehicle)
+         .type('{enter}'); // hit Enter to select
+       cy.contains('h1, h2', 'Assets').click();
+
+       //Save changes 
+       cy.contains('button', 'Save Changes').click();
+
+       //Check success message
+       cy.contains('Asset updated successfully').should('be.visible');
+
+        
+     
+  
+
+   }
+  
     } 
 
     
