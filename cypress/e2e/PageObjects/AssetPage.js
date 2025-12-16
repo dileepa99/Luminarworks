@@ -73,76 +73,70 @@ class AssetPage {
          cy.wrap(assetName).as('assetName'); // store as alias
 
          //Trype asset name
-      cy.contains('button', 'Add Asset').click();
-      cy.get('input[name="assetName"]')  // your field uses name="assetName"
+         cy.contains('button', 'Add Asset').click();
+         cy.get('input[name="assetName"]')  // your field uses name="assetName"
         .clear()
         .type(assetName);
 
         //Type identifier
-        const identifier = `Identifier${uniqueSuffix}`;
-        cy.wrap(identifier).as('identifier'); // store as alias
-        cy.get('input[name="identifier"]').clear().type(identifier);
-
+         const identifier = `Identifier${uniqueSuffix}`;
+         cy.wrap(identifier).as('identifier'); // store as alias
+         cy.get('input[name="identifier"]').clear().type(identifier);
 
 
      //Select Truck for the speed profile
-       cy.contains('span', 'Speed Profile').click();
-     // Select value
-     
-    cy.get('input[placeholder="Search speed profile..."]') 
-      .clear()
-      .type(SpeedProfile)
-      .type('{enter}'); // hit Enter to select
+        cy.contains('span', 'Speed Profile').click();
+
+     // Select value     
+       cy.get('input[placeholder="Search speed profile..."]') 
+         .clear()
+         .type(SpeedProfile)
+         .type('{enter}'); // hit Enter to select
 
        // Optional: verify selection
-     cy.contains('span', SpeedProfile).should('be.visible');
-     cy.wait(1000)
+       cy.contains('span', SpeedProfile).should('be.visible');
+       cy.wait(1000)
 
      //Select business unit
-     cy.contains('span', 'Branch').click();
+       cy.contains('span', 'Branch').click();
 
-         cy.get('input[placeholder="Search business unit..."]') 
-      .clear()
-      .type(BusinessUnit)
-      .type('{enter}'); // hit Enter to select
+       cy.get('input[placeholder="Search business unit..."]') 
+        .clear()
+        .type(BusinessUnit)
+        .type('{enter}'); // hit Enter to select
 
        // Optional: verify selection
-     cy.contains('span', BusinessUnit).should('be.visible');
+       cy.contains('span', BusinessUnit).should('be.visible');
 
-//Select the expiry date
-
-    
-  cy.get('input[placeholder="mm/dd/yyyy"]')
-   .invoke('val', '2027-12-20')
-  .wait(2000)
-  .trigger('change');
-
+      //Select the expiry date
+      cy.get('input[placeholder="mm/dd/yyyy"]')
+        .type('2027-12-20')
+        .blur()
   
 
    //Type capacity
-    cy.get('input[name="capacity1"]') // select the input by its name
-  .clear()                         // clear any existing value
-  .type('10');   
+       cy.get('input[name="capacity1"]') // select the input by its name         
+         .clear()                         // clear any existing value
+         .type('10');   
 
     
-    cy.get('input[name="capacity2"]') // select the input by its name
-  .clear()                         // clear any existing value
-  .type('20');   
+       cy.get('input[name="capacity2"]') // select the input by its name        
+         .clear()                                 // clear any existing value
+         .type('20');   
 
-    cy.get('input[name="capacity3"]') // select the input by its name
-  .clear()                         // clear any existing value
-  .type('30');   
+       cy.get('input[name="capacity3"]') // select the input by its name
+          .clear()                                 // clear any existing value
+         .type('30');   
 
-  //Select Trait
+      //Select Trait
 
        cy.contains('span', 'Delivery Truck').click();
-
        cy.get('input[placeholder="Search options..."]') 
-      .clear()
-      .type("Delivery Truck")
-      .type('{enter}'); // hit Enter to select
+         .clear()
+         .type("Delivery Truck")
+         .type('{enter}'); // hit Enter to select
 
-      cy.contains('h1, h2', 'Assets').click();
+       cy.contains('h1, h2', 'Assets').click();
 
       //Click create asset buttton
       cy.contains('button', 'Create Asset').click();
@@ -162,6 +156,7 @@ class AssetPage {
 
       cy.get('@assetName').then((name) => {
       cy.get('input[placeholder="Search..."]').clear().type(name).type('{enter}');
+      cy.wait(1000)
       cy.contains(name).should('be.visible');
 
       
@@ -214,7 +209,7 @@ class AssetPage {
     
   });
 
-
+   //Check the business unit of the asset
    cy.get('div.flex.transition-all.duration-300.ease-in-out.flex-row.justify-between.items-center.gap-1').eq(1)
   .should('be.visible') // make sure the div is visible
   .within(() => {
@@ -225,6 +220,8 @@ class AssetPage {
 
     
   });
+
+  //Check the Trait of the asset
 
   cy.get('div.flex.min-w-0.gap-3.w-1\\/2.flex-row.justify-between').eq(0) // note the escaped '/' in w-1/2
   .should('be.visible')
@@ -271,8 +268,13 @@ class AssetPage {
   .should('be.visible');
 
    //Check the capacity
-cy.get('tbody')
+ cy.get('tbody')
   .contains('td', '100kg')
+  .should('exist');
+
+  //Check the expiry date of the asset
+ cy.get('tbody')
+  .contains('td', 'Dec 20, 27')
   .should('exist');
 
 

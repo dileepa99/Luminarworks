@@ -1,27 +1,27 @@
 /// <reference types="cypress" />
 // cypress/e2e/market.spec.js
+import AgentPage from '../PageObjects/AgentPage';
 import AssetPage from '../PageObjects/AssetPage';
 
 
 describe('Asset Page Tests', () => {
   const AssetPg = new AssetPage();
+  const AgentPg = new AgentPage();
    beforeEach(() => {
     AssetPg.visit();  
       });
 
       
-  it('[Asset creation]-Add an assert and check the record in assert table- TC-580, TC-592', () => {
+  it('[Add Agent]-Add a new agent and check the visibility, TC-659', () => {
            
     AssetPg.LoginApp('dileepa+7@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
-    AssetPg.MoveToAssetPg()
-    AssetPg.CreateAsset('Truck', 'BU1')
-    AssetPg.SearchAssets('BU1')
-    AssetPg.SearchAssetInListView()
+    AgentPg.MoveToAgentPg()
+    AgentPg.CreateAgent('Truck', 'BU1','+94755512321','dileepa+7@luminaworks.com')
+    AgentPg.SearchAgent('BU1','+94755512321')
+    AgentPg.SearchAgentInListView('94755512321')
 
 
   });
-
-
 
 });
