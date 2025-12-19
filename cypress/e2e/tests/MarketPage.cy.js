@@ -41,12 +41,13 @@ marketPage.ExploreModulesBtn()
 
 });
 
+/*
 it('Check the compare modules button in pricing section - TC-552', () => {
  
   
 
+*/
 
 
-});
 
 });
