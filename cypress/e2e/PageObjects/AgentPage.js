@@ -68,6 +68,7 @@ class AgentPage {
 
       //Select the expiry date
        cy.get('input[placeholder="mm/dd/yyyy"]')
+         .focus()
          .type('2027-12-25')
          .blur()
   
@@ -189,7 +190,7 @@ class AgentPage {
    //===================================================================================
 
 
-   SearchAgentInListView(ContNo)
+   SearchAgentInListView(ContNo,ExpDate)
    {
     cy.get('a[href="/data/agents/list-view"]').click();
     cy.wait(2000)
@@ -234,14 +235,14 @@ cy.get('tbody')
 
   //Check the Agent's Expiry date
 cy.get('tbody')
-  .contains('td', 'Dec 25, 27')
+  .contains('td', ExpDate)
   .should('exist');
 
    }
 
    //==================================================================
 
-   EditAgent(EditNumber)
+   EditAgent(ExpDte,EditNumber)
    {
 
     //Select the agent to edit
@@ -256,17 +257,26 @@ cy.get('tbody')
         .should('be.visible')
         .click();
  
+
+         //Edit Expiry date
+        cy.get('input[placeholder="mm/dd/yyyy"]')
+          .focus()
+          .type(ExpDte)
+          .blur()
+
+     
         //Edit phone number
        cy.get('input[name="phoneNumber"]') 
          .clear()                         // clear any existing value
          .type(EditNumber);   
+       cy.wait(2000)
 
-         //Edit Trait
-       cy.contains('span', 'Select traits').click();
-       cy.get('input[placeholder="Search options..."]') 
-         .clear()
-         .type("Compact Van")
-         .type('{enter}'); // hit Enter to select
+               //Save changes 
+       cy.contains('button', 'Update Agent').click();
+
+       //Check success message
+       cy.contains('Agent updated successfully').should('be.visible');
+
 
    }
   
