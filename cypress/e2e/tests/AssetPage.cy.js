@@ -12,12 +12,12 @@ describe('Asset Page Tests', () => {
       
   it('[Asset creation]-Add an assert and check the record in assert table- TC-580, TC-592', () => {
            
-    AssetPg.LoginApp('dileepa+7@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AssetPg.MoveToAssetPg()
     AssetPg.CreateAsset('Truck', 'BU1')
-    AssetPg.SearchAssets('BU1','delivery_truck')
-    AssetPg.SearchAssetInListView('Dec 20, 27','delivery_truck')
+    AssetPg.SearchAssets('BU1')
+    AssetPg.SearchAssetInListView('Dec 20, 27')
 
 
   });
@@ -25,12 +25,12 @@ describe('Asset Page Tests', () => {
 
     it('[Asset edit]-Check editability of assets which are in valid state- TC-599', () => {
            
-    AssetPg.LoginApp('dileepa+7@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AssetPg.MoveToAssetPg()
     AssetPg.CreateAsset('Truck', 'BU1')
-    AssetPg.SearchAssets('BU1','delivery_truck')
-    AssetPg.EditAsset('Box Truck','2027-12-30')
+    AssetPg.SearchAssets('BU1')
+    AssetPg.EditAsset('2027-12-30')
     AssetPg.SearchAssetInListView('Dec 30, 27','box_truck')
    
   

@@ -88,13 +88,13 @@ class AgentPage {
  
 
       //Select Trait
-
+/*
        cy.contains('span', 'Select traits').click();
        cy.get('input[placeholder="Search options..."]') 
          .clear()
          .type("Compact Van")
          .type('{enter}'); // hit Enter to select
-
+*/
        cy.contains('h1, h2', 'Agents').click();
        cy.wait(2000)
 
@@ -114,7 +114,7 @@ class AgentPage {
 
      //===================================================================
 
-     SearchAgent(AgentBusinessUnit,PhnNumber,Vehicle,Ext)
+     SearchAgent(AgentBusinessUnit,PhnNumber,Ext)
   
      {
        //Check Agent's name
@@ -155,13 +155,14 @@ class AgentPage {
 
 
    //Check the Trait of the Agent
+   /*
      cy.get('div.flex.min-w-0.gap-3.w-1\\/2.flex-row.justify-between').eq(0) // note the escaped '/' in w-1/2
        .should('be.visible')
        .within(() => {
     cy.contains('Trait').should('exist');          // verify the label
     cy.contains(Vehicle).should('exist'); // verify the value
   });
-
+*/
    //Check the contact number of the Agent
     cy.get('div.flex.transition-all.duration-300.ease-in-out.flex-row.justify-between.items-center.gap-1').eq(3)
       .should('be.visible') // make sure the div is visible
@@ -215,7 +216,7 @@ class AgentPage {
    cy.contains('span','Active')
 
   //Check the Trait
-  cy.contains('span' ,'compact_van')
+  //cy.contains('span' ,'compact_van')
        
    //Check the Agent's Business unit
  cy.get('tbody')

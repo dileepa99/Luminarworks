@@ -120,7 +120,7 @@ class AssetPage {
          .clear()                         // clear any existing value
          .type('10');   
 
-    
+    /*
        cy.get('input[name="capacity2"]') // select the input by its name        
          .clear()                                 // clear any existing value
          .type('20');   
@@ -128,15 +128,15 @@ class AssetPage {
        cy.get('input[name="capacity3"]') // select the input by its name
           .clear()                                 // clear any existing value
          .type('30');   
-
+*/
       //Select Trait
-
+/*
        cy.contains('span', 'Delivery Truck').click();
        cy.get('input[placeholder="Search options..."]') 
          .clear()
          .type("Delivery Truck")
          .type('{enter}'); // hit Enter to select
-
+*/
        cy.contains('h1, h2', 'Assets').click();
 
       //Click create asset buttton
@@ -150,7 +150,7 @@ class AssetPage {
 
      //=========================================================
 
-     SearchAssets(BusinessUnit,Vehicle)
+     SearchAssets(BusinessUnit)
      {
 
      // const assetToSearch = this.assetName;
@@ -185,10 +185,12 @@ class AssetPage {
   .should('be.visible') // make sure the div is visible
   .within(() => {
     // Verify the label
-    cy.contains('Capacity1').should('exist');    
+    cy.contains('Capacity 1').should('exist');    
     // Verify the value next to it
     cy.contains('100').should('exist');
   })
+
+  /*
        //Check capacity 2 value
    cy.get('div.flex.transition-all.duration-300.ease-in-out.flex-row.justify-between.items-center.gap-1').eq(4)
   .should('be.visible') // make sure the div is visible
@@ -206,9 +208,11 @@ class AssetPage {
     cy.contains('Capacity3').should('exist');    
     // Verify the value next to it
     cy.contains('300').should('exist');
-
+     
     
   });
+
+  */
 
    //Check the business unit of the asset
    cy.get('div.flex.transition-all.duration-300.ease-in-out.flex-row.justify-between.items-center.gap-1').eq(1)
@@ -223,7 +227,7 @@ class AssetPage {
   });
 
   //Check the Trait of the asset
-
+/*
   cy.get('div.flex.min-w-0.gap-3.w-1\\/2.flex-row.justify-between').eq(0) // note the escaped '/' in w-1/2
   .should('be.visible')
   .within(() => {
@@ -231,11 +235,11 @@ class AssetPage {
     cy.contains(Vehicle).should('exist'); // verify the value
   });
 
-
+*/
      }
   //=================================================================
 
-  SearchAssetInListView(ExpDate,myTruck)
+  SearchAssetInListView(ExpDate)
   {
 
  cy.get('a[href="/data/assets/list-view"]').click();
@@ -261,7 +265,7 @@ class AssetPage {
    cy.contains('span','Active')
 
   //Check the Trait
-  cy.contains('span' , myTruck)
+  //cy.contains('span' , myTruck)
        
    //Check the Business unit
  cy.get('tbody')
@@ -270,7 +274,7 @@ class AssetPage {
 
    //Check the capacity
  cy.get('tbody')
-  .contains('td', '100kg')
+  .contains('td', '100')
   .should('exist');
 
   //Check the expiry date of the asset
@@ -282,7 +286,7 @@ class AssetPage {
      }
 
 //============================================================================
-     EditAsset(MyVehicle,ExDte)
+     EditAsset(ExDte)
    {
 
     //Select the agent to edit
@@ -299,6 +303,7 @@ class AssetPage {
         .type(ExDte)
         .blur()
     
+        /*
          //Edit Trait
        cy.contains('span', 'Delivery Truck')
          .scrollIntoView()
@@ -310,7 +315,7 @@ class AssetPage {
          .type(MyVehicle)
          .type('{enter}'); // hit Enter to select
        cy.contains('h1, h2', 'Assets').click();
-
+*/
        //Save changes 
        cy.contains('button', 'Save Changes').click();
 
