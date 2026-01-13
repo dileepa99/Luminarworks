@@ -3,8 +3,9 @@ import { first } from "lodash";
 class AgentPage {
   // Method to visit the Market Page
   visit() {
-    //cy.visit('https://idp.luminarworks.app/'); 
-    cy.visit('https://app.qa.luminarworks.app/');
+    
+   // cy.visit('https://app.qa.luminarworks.app/');
+    cy.visit('https://int.luminarworks.app/')
  
 
   }
@@ -119,7 +120,8 @@ class AgentPage {
      {
        //Check Agent's name
       cy.get('@agentName').then((Agtname) => {
-      cy.get('input[placeholder="Search..."]').clear().type(Agtname).type('{enter}');
+      //cy.get('input[placeholder="Search..."]').clear().type(Agtname).type('{enter}');
+      cy.get('[data-testid="data-header-search-input').clear().type(Agtname).type('{enter}');
       cy.wait(1000)
       cy.contains(Agtname).should('be.visible');
 

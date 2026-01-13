@@ -13,6 +13,7 @@ module.exports = defineConfig({
 
   e2e: {
     baseUrl: "https://qa.luminarworks.app/",
+  //  baseUrl:"https://int.luminarworks.app/",
 
     setupNodeEvents(on, config) {
       // implement node event listeners here

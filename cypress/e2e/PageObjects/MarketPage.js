@@ -32,9 +32,10 @@ class MarketPage {
     cy.contains('Luminar Starter').click();
     cy.wait(2000)
     cy.url().should('eq', 'https://app.qa.luminarworks.app/signup');
+   // cy.url().should('eq','https://int.luminarworks.app/signup')
 
 
-   cy.origin('https://app.qa.luminarworks.app', () => {
+   cy.origin('https://app.qa.luminarworks.app' , () => {
   cy.url().should('include', '/signup');
   cy.get('[data-slot="card-title"]')
   .should('be.visible')               // ensure element is visible

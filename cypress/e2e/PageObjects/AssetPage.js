@@ -2,7 +2,8 @@ class AssetPage {
   // Method to visit the Market Page
   visit() {
     //cy.visit('https://idp.luminarworks.app/'); 
-    cy.visit('https://app.qa.luminarworks.app/');
+    cy.visit('https://app.qa.luminarworks.app/');  
+   //cy.visit('https://app.int.luminarworks.app/');
  
 
   }
@@ -12,11 +13,14 @@ class AssetPage {
     LoginApp(username,password) {
 
      cy.origin(
-      'https://idp.luminarworks.app/',
+      'https://idp.luminarworks.app/',      
       { args: { username, password } },
       ({ username, password }) => {
 
+       
+
         cy.get('#username').clear().type(username);
+         cy.get('input[value="Sign In"]').click() //
         cy.get('#password').clear().type(password);
         cy.get('input[value="Sign In"]').click();
 
@@ -140,7 +144,10 @@ class AssetPage {
        cy.contains('h1, h2', 'Assets').click();
 
       //Click create asset buttton
-      cy.contains('button', 'Create Asset').click();
+   //   cy.contains('button', 'Create Asset').click();  //Check with the QA env
+      cy.get('div.flex.justify-end.flex-shrink-0.pt-4')
+        .contains('button', 'Add Asset')
+        .click();
 
       //Verify the success MessageChannel
       cy.contains('Asset created successfully').should('be.visible');
@@ -156,7 +163,8 @@ class AssetPage {
      // const assetToSearch = this.assetName;
 
       cy.get('@assetName').then((name) => {
-      cy.get('input[placeholder="Search..."]').clear().type(name).type('{enter}');
+     // cy.get('input[placeholder="Search..."]').clear().type(name).type('{enter}');
+     cy.get('[data-testid="data-header-search-input"]').clear().type(name).type('{enter}');
       cy.wait(1000)
       cy.contains(name).should('be.visible');
 
@@ -289,6 +297,7 @@ class AssetPage {
      EditAsset(ExDte)
    {
 
+    cy.wait(3000)
     //Select the agent to edit
      cy.get('.flex-shrink-0 [data-slot="checkbox"]')
        .should('be.visible')
@@ -296,7 +305,13 @@ class AssetPage {
      cy.wait(1000)
 
      //Click edit icon
-     cy.get('[aria-label="Edit"]').click();
+ //    cy.get('[aria-label="Edit"]').click();  check with QA env
+
+      cy.get('div.flex.justify-end')
+        .find('button[data-slot="button"]')
+        .first()
+        .should('be.visible')
+        .click();
 
      //Edit Expiry date
         cy.get('input[placeholder="mm/dd/yyyy"]')
