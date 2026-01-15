@@ -12,7 +12,7 @@ describe('Asset Page Tests', () => {
       
   it('[Asset creation]-Add an assert and check the record in assert table- TC-580, TC-592', () => {
            
-    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+161@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AssetPg.MoveToAssetPg()
     AssetPg.CreateAsset('Truck', 'BU1')
@@ -25,7 +25,7 @@ describe('Asset Page Tests', () => {
 
     it('[Asset edit]-Check editability of assets which are in valid state- TC-599', () => {
            
-    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+161@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AssetPg.MoveToAssetPg()
     AssetPg.CreateAsset('Truck', 'BU1')

@@ -20,7 +20,7 @@ class AssetPage {
        
 
         cy.get('#username').clear().type(username);
-         cy.get('input[value="Sign In"]').click() //
+      //   cy.get('input[value="Sign In"]').click() //
         cy.get('#password').clear().type(password);
         cy.get('input[value="Sign In"]').click();
 

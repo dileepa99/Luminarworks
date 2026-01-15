@@ -14,7 +14,7 @@ describe('Agent Page Tests', () => {
       
   it('[Add Agent]-Add a new agent and check the visibility, TC-659,TC-662', () => {
            
-    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+161@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AgentPg.MoveToAgentPg()
     AgentPg.CreateAgent('Truck', 'BU1','+94755512321','dileepa+8@luminaworks.com')
@@ -28,7 +28,7 @@ describe('Agent Page Tests', () => {
 //This TC failing due to Issue 733:[Agent]-Multiple edits for the single user not able to perform
 
   it('[Edit Agent]-Edit mutiple fields of an existing agent, TC-690', () => {
-    AssetPg.LoginApp('dileepa+8@luminarworks.com','Delhi200@'); 
+    AssetPg.LoginApp('dileepa+161@luminarworks.com','Delhi200@'); 
     AssetPg.VerifyHomePage('Hari Ranaweera')
     AgentPg.MoveToAgentPg()
     AgentPg.CreateAgent('Truck', 'BU1','+94755512321','dileepa+8@luminaworks.com')
